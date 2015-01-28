@@ -7,6 +7,8 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 /**
+ * Unit test case for Horse.java
+ * 
  * @author colin
  *
  */
@@ -14,26 +16,6 @@ public class HorseTest extends TestCase {
 
 	private Horse horse;
 	
-	/**
-	 * @param name
-	 */
-	public HorseTest(String name) {
-		super(name);
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	protected static void setUpBeforeClass() throws Exception {
-		
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	protected static void tearDownAfterClass() throws Exception {
-	}
-
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
@@ -54,7 +36,7 @@ public class HorseTest extends TestCase {
 	}
 	
 	/**
-	 * 
+	 * Testing getName() method
 	 */
 	@Test
 	public void testGetName(){
@@ -70,7 +52,7 @@ public class HorseTest extends TestCase {
 	}
 	
 	/**
-	 * 
+	 * Testing getLane() method
 	 */
 	@Test
 	public void testGetLane(){
@@ -85,7 +67,7 @@ public class HorseTest extends TestCase {
 	}
 	
 	/**
-	 * 
+	 * Testing getYardsAdvanced() method
 	 */
 	@Test
 	public void testGetYardsAdvanced(){
@@ -101,7 +83,7 @@ public class HorseTest extends TestCase {
 	}
 	
 	/**
-	 * 
+	 * Testing advance() method
 	 */
 	@Test
 	public void testAdvance(){

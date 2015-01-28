@@ -14,6 +14,8 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 /**
+ * Unit test case for HorseRacing.java
+ * 
  * @author colin
  *
  */
@@ -30,26 +32,7 @@ public class HorseRacingTest extends TestCase {
 	private Horse horse8;
 	
 	private Horse[] horses = null;
-	
-	
-	/**
-	 * @param name
-	 */
-	public HorseRacingTest(String name) {
-		super(name);
-	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	protected static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	protected static void tearDownAfterClass() throws Exception {
-	}
 
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
@@ -83,10 +66,11 @@ public class HorseRacingTest extends TestCase {
 		horse6 = null;
 		horse7 = null;
 		horse8 = null;
+		GamePlay.gameWon = false;
 	}
 	
 	/**
-	 * 
+	 * Testing the startRace() method
 	 */
 	@Test
 	public void testStartRace(){
@@ -111,7 +95,7 @@ public class HorseRacingTest extends TestCase {
 	}
 	
 	/**
-	 * 
+	 * Testing the race() method
 	 */
 	@Test
 	public void testRace(){
@@ -136,7 +120,7 @@ public class HorseRacingTest extends TestCase {
 	}
 	
 	/**
-	 * 
+	 * Testing the finishRace() method
 	 */
 	@Test
 	public void testFinishRace(){

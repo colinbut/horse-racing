@@ -8,32 +8,41 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 /**
+ * Unit test case for class HorseRacingResultsWriter.java
  * 
  * @author colin
  *
  */
 public class HorseRacingResultsWriterTest extends TestCase {
-
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param name
+	 */
 	public HorseRacingResultsWriterTest(String name) {
 		super(name);
 	}
 
-	protected static void setUpBeforeClass() throws Exception {
-	}
-
-	protected static void tearDownAfterClass() throws Exception {
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see junit.framework.TestCase#setUp()
+	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see junit.framework.TestCase#tearDown()
+	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		GamePlay.gameWon = false;
 	}
 	
 	/**
-	 * 
+	 * Tests the printing of the race results
 	 */
 	@Test
 	public void testPrintOutRaceResults(){

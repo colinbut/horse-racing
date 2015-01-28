@@ -7,18 +7,33 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
+/**
+ * Unit test case for HorseRacingInputReader.java
+ * 
+ * @author colin
+ *
+ */
 public class HorseRacingInputReaderTest extends TestCase {
 
+	/*
+	 * (non-Javadoc)
+	 * @see junit.framework.TestCase#setUp()
+	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see junit.framework.TestCase#tearDown()
+	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		GamePlay.gameWon = false;
 	}
 
 	/**
-	 * 
+	 * Testing the readInput method
 	 */
 	@Test
 	public void testReadInput(){
@@ -55,7 +70,6 @@ public class HorseRacingInputReaderTest extends TestCase {
 		expectedInput.add("2 60");
 		
 		assertEquals(expectedInput, inputLines);
-		assertSame(expectedInput, inputLines);
 		assertNotNull(inputLines);
 		
 	}
