@@ -32,12 +32,10 @@ public class GamePlay implements IGame{
 		horseRace = new HorseRacing();
 		
 		lanes = new ArrayList<Integer>(
-								Arrays.asList(new Integer[] {
-											1,2,3,4,5,6,7}));
+			Arrays.asList(new Integer[] {1,2,3,4,5,6,7}));
 		
 		holes = new ArrayList<Integer>(
-								Arrays.asList(new Integer[]{
-											5,5,5,5,10,10,10,20,20,40,60}));
+			Arrays.asList(new Integer[]{5,5,5,5,10,10,10,20,20,40,60}));
 		
 	}
 	
