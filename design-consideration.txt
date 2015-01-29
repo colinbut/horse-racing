@@ -1,0 +1,16 @@
+Design Designs
+
+1. Upon invalid data entry, the program will halt and print out error message onto system.out then exit (requiring to restart again)
+
+2. Input not read in from system.in and is provided either: 
+- on compile time in the program’s start-up class KentuckyDerby.java 
+- in unit test cases
+
+3. Output written to system.out
+
+4. Currently, program provides error handling for the following:
+   	- Ball Throw line not in correct format (1 60)
+	- Lanes does not exceed maximum allowed in game (7)
+	- Valid holes 
+
+5. Ignores invalid lane number in Ball Throw input lines e.g. [7 10]

@@ -1,0 +1,4 @@
+Assumptions
+
+1. Invalid Lane Number provided in Ball Throw lines not affecting the program so the decision was to simply ignore it
+    e.g. [7 10] where only 5 horses provided at start of game 
