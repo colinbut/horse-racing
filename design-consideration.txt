@@ -1,4 +1,4 @@
-Design Designs
+Design Considerations
 
 1. Upon invalid data entry, the program will halt and print out error message onto system.out then exit (requiring to restart again)
 
