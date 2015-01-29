@@ -15,14 +15,6 @@ import junit.framework.TestCase;
  */
 public class GamePlayTest extends TestCase {
 
-	/**
-	 * @param name
-	 */
-	public GamePlayTest(String name) {
-		super(name);
-	}
-
-
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
@@ -35,6 +27,7 @@ public class GamePlayTest extends TestCase {
 	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		GamePlay.gameWon = false;
 	}
 	
 	/**

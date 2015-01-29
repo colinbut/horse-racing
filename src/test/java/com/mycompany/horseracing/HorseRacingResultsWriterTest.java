@@ -14,15 +14,6 @@ import junit.framework.TestCase;
  *
  */
 public class HorseRacingResultsWriterTest extends TestCase {
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param name
-	 */
-	public HorseRacingResultsWriterTest(String name) {
-		super(name);
-	}
 
 	/*
 	 * (non-Javadoc)

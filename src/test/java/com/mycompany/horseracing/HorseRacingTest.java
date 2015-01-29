@@ -29,27 +29,22 @@ public class HorseRacingTest extends TestCase {
 	private Horse horse5;
 	private Horse horse6;
 	private Horse horse7;
-	private Horse horse8;
+	//private Horse horse8;
 	
-	private Horse[] horses = null;
-
-
+	
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 		horseRace = new HorseRacing();
-		horses = new Horse[]{
-			horse1 = new Horse("Star", 1),
-			horse2 = new Horse("Dakota", 2),
-			horse3 = new Horse("Cheyenne", 3),
-			horse4 = new Horse("Misty", 4),
-			horse5 = new Horse("Spirit", 5),
-			horse6 = new Horse("Jimmy", 6),
-			horse7 = new Horse("Sunshine", 7),
-			horse8 = new Horse("Lucky", 8),
-		};
+		horse1 = new Horse("Star", 1);
+		horse2 = new Horse("Dakota", 2);
+		horse3 = new Horse("Cheyenne", 3);
+		horse4 = new Horse("Misty", 4);
+		horse5 = new Horse("Spirit", 5);
+		horse6 = new Horse("Jimmy", 6);
+		horse7 = new Horse("Sunshine", 7);
 	}
 
 	/* (non-Javadoc)
@@ -65,7 +60,6 @@ public class HorseRacingTest extends TestCase {
 		horse5 = null;
 		horse6 = null;
 		horse7 = null;
-		horse8 = null;
 		GamePlay.gameWon = false;
 	}
 	
@@ -143,7 +137,7 @@ public class HorseRacingTest extends TestCase {
 		assertFalse(actualResults.size() == 0);
 		assertTrue(actualResults.size() > 0);
 		
-		
+		// each element are actually what's expected
 		for(Map.Entry<Integer, Horse> resultEntry : actualResults.entrySet()){
 			
 			int yardMoved = resultEntry.getKey();
