@@ -1,6 +1,0 @@
-Design
-
-This simple game is represented by a object-oriented model with the concept of a component based architecture used. Each unique independent function of the game is abstracted out into small components. The idea is we can remove and plug-in new components at any time.
-e.g. The HorseRacingInputReader.java class currently reads in input from a piece of string. A separate class that reads in data from a text file can be plugged in replacing that. 
-
-See Class Diagram.png
