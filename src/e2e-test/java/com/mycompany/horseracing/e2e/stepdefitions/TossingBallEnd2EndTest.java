@@ -7,12 +7,15 @@ package com.mycompany.horseracing.e2e.stepdefitions;
 
 import org.junit.experimental.categories.Category;
 
+import com.mycompany.horseracing.Horse;
 import com.mycompany.horseracing.e2e.End2EndCategory;
+import com.mycompany.horseracing.model.Player;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import static org.junit.Assert.*;
 
 /**
  * {@link TossingBallEnd2EndTest} test class
@@ -23,6 +26,11 @@ import cucumber.api.java.en.When;
 @Category(End2EndCategory.class)
 public class TossingBallEnd2EndTest {
 
+	private Player player;
+	private int ballNumber;
+	private Horse horse;
+	
+	
 	@Given("^there are (\\d+) holes for each lane$")
 	public void there_are_holes_for_each_lane(int arg1) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
@@ -43,13 +51,11 @@ public class TossingBallEnd2EndTest {
 
 	@When("^a virtual player tosses a ball to a set of holes$")
 	public void a_virtual_player_tosses_a_ball_to_a_set_of_holes() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    player.tossBall(ballNumber);
 	}
 
 	@Then("^the horse belonging to the virtual player advances by the number of yards indicated by the hole number$")
 	public void the_horse_belonging_to_the_virtual_player_advances_by_the_number_of_yards_indicated_by_the_hole_number() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    assertEquals(ballNumber, horse.getYardsAdvanced());
 	}
 }

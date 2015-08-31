@@ -1,7 +1,7 @@
 Feature: Horse Racing
 
 	Background: 
-		Given the track length is 1 furlong
+		Given the track length is 120 yards # 1 furlong
 		And there are a maximum of 7 horses playing
 		And the track has 7 lanes in it (numbered lanes 1 to 7)
 		And each horse has a name
