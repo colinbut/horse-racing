@@ -5,7 +5,7 @@
  */
 package com.mycompany.horseracing.model;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Observable;
 
 import org.apache.log4j.Logger;
@@ -27,7 +27,7 @@ public abstract class AbstractGameModel extends Observable {
 	 * @param horsesNames
 	 * @param playersBallsMap
 	 */
-	public final void populateGameData(String[] horsesNames, Map<Integer, Integer> playersBallsMap) {
+	public final void populateGameData(String[] horsesNames, List<PlayerBallsMapPair> playersBallsMap) {
 		populateHorseNames(horsesNames);
 		populatePlayersBallsMap(playersBallsMap);
 		notifyGameEngine();
@@ -43,7 +43,7 @@ public abstract class AbstractGameModel extends Observable {
 	 * 
 	 * @param playersBallsMap
 	 */
-	protected abstract void populatePlayersBallsMap(Map<Integer, Integer> playersBallsMap);
+	protected abstract void populatePlayersBallsMap(List<PlayerBallsMapPair> playersBallsMap);
 	
 	/*
 	 * 

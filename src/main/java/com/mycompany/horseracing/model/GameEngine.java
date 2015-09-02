@@ -38,9 +38,12 @@ public class GameEngine implements Observer {
 	private void gameSetup() {
 		logger.info("initialising game");
 		
-		for(int i = 0; i < gameModel.getHorsesNames().size(); i++) {
+		// set up horses
+		for(int i = 0; i < gameModel.getHorsesNames().length; i++) {
+			//logger.info(gameModel.getHorsesNames().length);
 			Horse horse = new Horse();
-			horse.setName(gameModel.getHorsesNames().get(i));
+			horse.setName(gameModel.getHorsesNames()[i]);
+			horse.setHorseNumber(i + 1);
 			race.addHorse(horse);
 		}
 		
@@ -50,6 +53,9 @@ public class GameEngine implements Observer {
 
 	public void playGame() {
 		logger.info("playing the game");
+		
+		race.race(gameModel.getPlayersBallsMap());
+		
 	}
 	
 	public List<Player> getPlayers() {

@@ -44,6 +44,15 @@ public class Track implements GameObject {
 		return lanes;
 	}
 	
+	public Lane getLane(int laneNumber) {
+		for(Lane lane : lanes) {
+			if(lane.getLaneNumber() == laneNumber) {
+				return lane;
+			}
+		}
+		return null;
+	}
+	
 	public void enterLane(Horse horse, int laneNumber) {
 		lanes.stream().forEach(lane -> {
 			if(lane.getLaneNumber() == laneNumber) {

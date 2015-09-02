@@ -5,9 +5,8 @@
  */
 package com.mycompany.horseracing.model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -27,6 +26,8 @@ public class GameInputAction implements InputAction {
 	@Override
 	public void action(List<String> inputLines) {
 		
+		GameModel gameModel = GameModel.getInstance();
+		
 		if(logger.isDebugEnabled()) {
 			inputLines.stream().forEach(line -> {logger.debug(line);});
 		}
@@ -34,7 +35,7 @@ public class GameInputAction implements InputAction {
 		String horses = inputLines.get(0); // assume first line is horses names
 		String[] horsesNames = horses.split(", ");
 		
-		Map<Integer, Integer> playerBallsMap = new HashMap<>();
+		List<PlayerBallsMapPair> playerBallsPairList = new ArrayList<>();
 		
 		for(int i = 1; i < inputLines.size(); i++) {
 			String[] line = inputLines.get(i).split(" ");
@@ -43,15 +44,18 @@ public class GameInputAction implements InputAction {
 				logger.debug(line);
 			}
 			
-			playerBallsMap.put(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
+			playerBallsPairList.add(new PlayerBallsMapPair(Integer.parseInt(line[0]), 
+					Integer.parseInt(line[1])));
 		}
 		
 		if(logger.isDebugEnabled()) {
-			playerBallsMap.forEach((key,value) -> {logger.debug(key + " " + value);});
+			playerBallsPairList.stream().forEach((playerBallsPair) -> {
+				logger.debug(playerBallsPair);
+			});
 		}
 		
-		GameModel gameModel = GameModel.getInstance();
-		gameModel.populateGameData(horsesNames, playerBallsMap);
+		
+		gameModel.populateGameData(horsesNames, playerBallsPairList);
 	}
 
 }

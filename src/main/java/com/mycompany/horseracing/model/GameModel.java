@@ -5,11 +5,9 @@
  */
 package com.mycompany.horseracing.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 import org.apache.log4j.Logger;
 
@@ -27,15 +25,12 @@ public class GameModel extends AbstractGameModel {
 	
 	private static GameModel INSTANCE = null;
 	
-	private List<String> horsesNames;
-	private List<Integer> horseNumbers;
-	private List<Integer> ballNumbers;
+	private String[] horsesNames;
+	private List<PlayerBallsMapPair> playersBallsMap;
 	
 	private GameModel() {
 		logger.info("initialising GameModel");
-		horsesNames = new ArrayList<>();
-		horseNumbers = new ArrayList<>();
-		ballNumbers = new ArrayList<>();
+		playersBallsMap = Collections.emptyList();
 	}
 	
 	public static GameModel getInstance() {
@@ -50,30 +45,23 @@ public class GameModel extends AbstractGameModel {
 	 */
 	@Override
 	protected void populateHorseNames(String[] horsesNames) {
-		this.horsesNames = Arrays.stream(horsesNames).collect(Collectors.toList());
+		this.horsesNames = horsesNames;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void populatePlayersBallsMap(Map<Integer, Integer> playersBallsMap) {
-		for(Map.Entry<Integer, Integer> entry : playersBallsMap.entrySet()) {
-			horseNumbers.add(entry.getKey());
-			ballNumbers.add(entry.getValue());
-		}
+	public void populatePlayersBallsMap(List<PlayerBallsMapPair> playersBallsMap) {
+		this.playersBallsMap = playersBallsMap;
 	}
 
-	public List<String> getHorsesNames() {
+	public String[] getHorsesNames() {
 		return horsesNames;
 	}
 
-	public List<Integer> getHorseNumbers() {
-		return horseNumbers;
-	}
-
-	public List<Integer> getBallNumbers() {
-		return ballNumbers;
+	public List<PlayerBallsMapPair> getPlayersBallsMap() {
+		return playersBallsMap;
 	}
 	
 	

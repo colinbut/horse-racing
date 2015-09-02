@@ -17,6 +17,7 @@ import com.mycompany.horseracing.model.GameObject;
  */
 public class Horse extends Observable implements GameObject {
 
+	private int horseNumber;
 	private String name;
 	private int yardsMoved;
 	
@@ -46,6 +47,19 @@ public class Horse extends Observable implements GameObject {
 	private void crossingTheFinishLine() {
 		this.setChanged();
 		this.notifyObservers();
+	}
+
+	public int getHorseNumber() {
+		return horseNumber;
+	}
+
+	public void setHorseNumber(int horseNumber) {
+		this.horseNumber = horseNumber;
+	}
+
+	@Override
+	public String toString() {
+		return "Horse [horseNumber=" + horseNumber + ", name=" + name + ", yardsMoved=" + yardsMoved + "]";
 	}
 	
 }
