@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.mycompany.horseracing.model;
+package com.mycompany.horseracing.domain;
+
+import com.mycompany.horseracing.model.GameObject;
 
 /**
  * @author colin

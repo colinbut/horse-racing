@@ -5,6 +5,9 @@
  */
 package com.mycompany.horseracing.model;
 
+import com.mycompany.horseracing.domain.Horse;
+import com.mycompany.horseracing.domain.Race;
+
 /**
  * @author colin
  *

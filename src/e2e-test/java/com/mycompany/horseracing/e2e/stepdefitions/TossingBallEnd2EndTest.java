@@ -8,10 +8,10 @@ package com.mycompany.horseracing.e2e.stepdefitions;
 import org.junit.experimental.categories.Category;
 
 import com.mycompany.horseracing.Horse;
+import com.mycompany.horseracing.domain.Lane;
+import com.mycompany.horseracing.domain.Player;
+import com.mycompany.horseracing.domain.Race;
 import com.mycompany.horseracing.e2e.End2EndCategory;
-import com.mycompany.horseracing.model.Lane;
-import com.mycompany.horseracing.model.Player;
-import com.mycompany.horseracing.model.Race;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;

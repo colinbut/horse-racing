@@ -5,6 +5,12 @@
  */
 package com.mycompany.horseracing.model;
 
+import com.mycompany.horseracing.domain.Hole;
+import com.mycompany.horseracing.domain.Horse;
+import com.mycompany.horseracing.domain.Lane;
+import com.mycompany.horseracing.domain.Player;
+import com.mycompany.horseracing.domain.Track;
+
 /**
  * {@link GameFactory} class
  * 

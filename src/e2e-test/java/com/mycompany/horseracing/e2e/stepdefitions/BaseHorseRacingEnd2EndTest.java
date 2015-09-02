@@ -9,10 +9,10 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import static org.junit.Assert.*;
 
+import com.mycompany.horseracing.domain.Player;
+import com.mycompany.horseracing.domain.Race;
+import com.mycompany.horseracing.domain.Track;
 import com.mycompany.horseracing.model.Game;
-import com.mycompany.horseracing.model.Player;
-import com.mycompany.horseracing.model.Race;
-import com.mycompany.horseracing.model.Track;
 
 /**
  * {@link BaseHorseRacingEnd2EndTest} test class

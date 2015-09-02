@@ -8,6 +8,9 @@ package com.mycompany.horseracing.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mycompany.horseracing.domain.Player;
+import com.mycompany.horseracing.domain.Race;
+
 /**
  * @author colin
  *

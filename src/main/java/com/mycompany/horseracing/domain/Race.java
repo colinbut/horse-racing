@@ -3,12 +3,14 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.model;
+package com.mycompany.horseracing.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+
+import com.mycompany.horseracing.model.GameObject;
 
 /**
  * @author colin

@@ -3,9 +3,11 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.model;
+package com.mycompany.horseracing.domain;
 
 import java.util.Observable;
+
+import com.mycompany.horseracing.model.GameObject;
 
 /**
  * {@link Horse} class
