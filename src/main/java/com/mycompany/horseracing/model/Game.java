@@ -8,6 +8,8 @@ package com.mycompany.horseracing.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Race;
 
@@ -17,7 +19,7 @@ import com.mycompany.horseracing.domain.Race;
  */
 public class Game {
 
-	
+	final Logger logger = Logger.getLogger(getClass()); 
 	
 	private List<Player> players;
 	private Race race;
@@ -25,10 +27,11 @@ public class Game {
 	public Game() {
 		setPlayers(new ArrayList<>());
 		race = new Race();
+		gameSetup();
 	}
 	
 	private void gameSetup() {
-		
+		logger.info("initialising game");
 	}
 
 	public List<Player> getPlayers() {
