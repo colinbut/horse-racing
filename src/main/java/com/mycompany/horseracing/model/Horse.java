@@ -13,7 +13,7 @@ import java.util.Observable;
  * @author colin
  *
  */
-public class Horse extends Observable {
+public class Horse extends Observable implements GameObject {
 
 	private String name;
 	private int yardsMoved;

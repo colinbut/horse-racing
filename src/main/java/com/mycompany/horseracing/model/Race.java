@@ -14,7 +14,7 @@ import java.util.Observer;
  * @author colin
  *
  */
-public class Race implements Observer {
+public class Race implements GameObject, Observer {
 
 	private List<Horse> horses;
 	private Track raceTrack;
@@ -23,7 +23,7 @@ public class Race implements Observer {
 	
 	public Race() {
 		raceTrack = Track.getInstance();
-		horses = new ArrayList<>(7);
+		horses = new ArrayList<>(NUMBER_OF_HORSES);
 	}
 	
 	public void addHorse(Horse horse) {

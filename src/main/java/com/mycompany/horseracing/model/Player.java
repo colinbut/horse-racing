@@ -11,7 +11,7 @@ package com.mycompany.horseracing.model;
  * @author colin
  *
  */
-public class Player {
+public class Player implements GameObject {
 
 	private String name;
 	private Horse horse;

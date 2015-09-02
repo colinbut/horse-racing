@@ -9,6 +9,8 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import static org.junit.Assert.*;
 
+import com.mycompany.horseracing.model.Game;
+import com.mycompany.horseracing.model.Player;
 import com.mycompany.horseracing.model.Race;
 import com.mycompany.horseracing.model.Track;
 
@@ -22,7 +24,7 @@ public class BaseHorseRacingEnd2EndTest {
 
 	private Race race = new Race();
 	private Track track = race.getRaceTrack();
-	
+	private Game game = new Game();
 	
 	@Given("^the track length is (\\d+) yards # (\\d+) furlong$")
 	public void the_track_length_is_yards_furlong(int trackLength, int furlongLength) throws Throwable {
@@ -41,7 +43,9 @@ public class BaseHorseRacingEnd2EndTest {
 
 	@Given("^each horse has a name$")
 	public void each_horse_has_a_name() throws Throwable {
-	    
+	    for(Player player : game.getPlayers()) {
+	    	assertNotNull(player.getName());
+	    }
 	}
 
 	@Given("^each horse will be in one lane$")

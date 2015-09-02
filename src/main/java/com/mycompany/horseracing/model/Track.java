@@ -12,7 +12,7 @@ import java.util.List;
  * @author colin
  *
  */
-public class Track {
+public class Track implements GameObject {
 
 	public static final int LENGTH = 120; // 1 furlong is 120 yards
 	

@@ -9,7 +9,9 @@ import org.junit.experimental.categories.Category;
 
 import com.mycompany.horseracing.Horse;
 import com.mycompany.horseracing.e2e.End2EndCategory;
+import com.mycompany.horseracing.model.Lane;
 import com.mycompany.horseracing.model.Player;
+import com.mycompany.horseracing.model.Race;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -29,12 +31,14 @@ public class TossingBallEnd2EndTest {
 	private Player player;
 	private int ballNumber;
 	private Horse horse;
+	private Race race = new Race();
 	
 	
 	@Given("^there are (\\d+) holes for each lane$")
-	public void there_are_holes_for_each_lane(int arg1) throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void there_are_holes_for_each_lane(int numberOfHoles) throws Throwable {
+	    for(Lane lane : race.getRaceTrack().getLanes()) {
+	    	assertTrue(lane.getHoles().size() == numberOfHoles);
+	    }
 	}
 
 	@Given("^each hole has a number # this is the number of the yards the horse will move$")

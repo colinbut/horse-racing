@@ -14,16 +14,26 @@ import java.util.List;
  */
 public class Game {
 
+	
+	
 	private List<Player> players;
 	private Race race;
 	
 	public Game() {
-		players = new ArrayList<>();
+		setPlayers(new ArrayList<>());
 		race = new Race();
 	}
 	
 	private void gameSetup() {
 		
+	}
+
+	public List<Player> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 	
 	
