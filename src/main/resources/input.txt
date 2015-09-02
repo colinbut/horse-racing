@@ -1,0 +1,13 @@
+Star, Dakota, Cheyene, Misty, Spirit
+1 60
+3 5
+1 60
+4 5
+4 10
+2 5
+5 10
+1 60
+3 20
+7 10
+1 40
+2 60

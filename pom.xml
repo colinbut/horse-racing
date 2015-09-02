@@ -7,12 +7,7 @@
 	<version>1.1-SNAPSHOT</version>
 	<name>horse-racing</name>
 	<url>http://maven.apache.org</url>
-
-	<properties>
-		<cucumberJava.version>1.2.3</cucumberJava.version>
-		<cucumberJunit.version>1.2.3</cucumberJunit.version>
-	</properties>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -48,14 +43,14 @@
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>${cucumberJava.version}</version>
+			<version>1.2.3</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>${cucumberJunit.version}</version>
+			<version>1.2.3</version>
 			<scope>test</scope>
 		</dependency>
 		

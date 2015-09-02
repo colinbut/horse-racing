@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Race;
 import com.mycompany.horseracing.domain.Track;
-import com.mycompany.horseracing.model.Game;
+import com.mycompany.horseracing.model.GameEngine;
 
 /**
  * {@link BaseHorseRacingEnd2EndTest} test class
@@ -24,7 +24,7 @@ public class BaseHorseRacingEnd2EndTest {
 
 	private Race race = new Race();
 	private Track track = race.getRaceTrack();
-	private Game game = new Game();
+	private GameEngine game = new GameEngine();
 	
 	@Given("^the track length is (\\d+) yards # (\\d+) furlong$")
 	public void the_track_length_is_yards_furlong(int trackLength, int furlongLength) throws Throwable {
