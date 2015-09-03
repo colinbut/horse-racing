@@ -52,7 +52,7 @@ public class Race implements GameObject, Observer {
 		}
 	}
 	
-	public void race(List<PlayerBallsMapPair> playerBallsMap) {
+	public void race(List<PlayerBallsMapPair> playerBallsMap, List<Player> players) {
 		logger.info("racing started");
 		for(PlayerBallsMapPair pair : playerBallsMap) {
 			
@@ -64,21 +64,26 @@ public class Race implements GameObject, Observer {
 				continue; //skip this iteration as there's no horse registered with this number
 			}
 			
-			int yardToMove = pair.getBallNumber();
+			// get the player
+			Player player = null;
+			for(Player p : players) {
+				if(p.getHorse() == horse) {
+					player = p;
+					break;
+				}
+			}
 			
 			Lane lane = raceTrack.getLane(horseLaneNumber);
 			
 			if(lane != null) {
 				
-				Hole hole = lane.findHoleByNumber(yardToMove);
-				
-				if(hole != null) {
-					logger.info(horse + " advancing " + yardToMove + " yards");
-					horse.advance(yardToMove);
+				int yardToMove = pair.getBallNumber();
+				if(player.getLane() == null) {
+					player.setLane(lane);
 				}
+				player.tossBall(yardToMove);
 				
 			}
-			
 			
 		}
 		

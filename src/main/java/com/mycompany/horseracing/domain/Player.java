@@ -5,6 +5,8 @@
  */
 package com.mycompany.horseracing.domain;
 
+import org.apache.log4j.Logger;
+
 import com.mycompany.horseracing.model.GameObject;
 
 /**
@@ -15,15 +17,23 @@ import com.mycompany.horseracing.model.GameObject;
  */
 public class Player implements GameObject {
 
+	final Logger logger = Logger.getLogger(getClass()); 
+	
 	private String name;
 	private Horse horse;
+	private Lane lane;
 	
 	public Player(Horse horse) {
 		setHorse(horse);
 	}
 	
 	public void tossBall(int yardsToMove) {
-		horse.setYardsMoved(yardsToMove);
+		Hole hole = lane.findHoleByNumber(yardsToMove);
+		if(hole != null) {
+			logger.info(horse + " advancing " + yardsToMove + " yards");
+			horse.advance(yardsToMove);
+		}
+		
 	}
 
 	public String getName() {
@@ -40,5 +50,13 @@ public class Player implements GameObject {
 
 	public void setHorse(Horse horse) {
 		this.horse = horse;
+	}
+
+	public Lane getLane() {
+		return lane;
+	}
+
+	public void setLane(Lane lane) {
+		this.lane = lane;
 	}
 }

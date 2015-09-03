@@ -16,7 +16,7 @@ import com.mycompany.horseracing.model.GameObject;
  */
 public class Track implements GameObject {
 
-	public static final int LENGTH = 120; // 1 furlong is 120 yards
+	public static final int LENGTH = 220; // 1 furlong is 220 yards
 	
 	private static Track INSTANCE = null;
 	
