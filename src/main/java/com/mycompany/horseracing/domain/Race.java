@@ -12,10 +12,16 @@ import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
+import com.mycompany.horseracing.model.FinishedState;
+import com.mycompany.horseracing.model.GameContext;
 import com.mycompany.horseracing.model.GameObject;
 import com.mycompany.horseracing.model.PlayerBallsMapPair;
+import com.mycompany.horseracing.model.PlayingState;
+
 
 /**
+ * {@link Race} class
+ * 
  * @author colin
  *
  */
@@ -25,6 +31,7 @@ public class Race implements GameObject, Observer {
 	
 	private List<Horse> horses;
 	private Track raceTrack;
+	private GameContext gameContext = GameContext.getGameContext();
 	
 	public static final int NUMBER_OF_HORSES = 7;
 	
@@ -54,7 +61,15 @@ public class Race implements GameObject, Observer {
 	
 	public void race(List<PlayerBallsMapPair> playerBallsMap, List<Player> players) {
 		logger.info("racing started");
+		
+		gameContext.setState(new PlayingState());
+		
 		for(PlayerBallsMapPair pair : playerBallsMap) {
+			
+			if(gameContext.getCurrentState() instanceof FinishedState) {
+				logger.info("racing stopped");
+				break;
+			}
 			
 			int horseLaneNumber = pair.getPlayerNumber();
 			
@@ -104,6 +119,9 @@ public class Race implements GameObject, Observer {
 		if(o instanceof Horse) {
 			Horse horse = (Horse) o;
 			logger.info(horse + " won the race! ");
+			
+			gameContext.setState(new FinishedState());
+			
 		} else {
 			throw new IllegalArgumentException("Incorrect type observed - something went wrong");
 		}

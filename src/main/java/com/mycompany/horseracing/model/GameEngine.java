@@ -17,6 +17,8 @@ import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Race;
 
 /**
+ * {@link GameEngine} class
+ * 
  * @author colin
  *
  */
@@ -28,6 +30,11 @@ public class GameEngine implements Observer {
 	private Race race;
 	private GameModel gameModel;
 	
+	private GameContext gameContext = GameContext.getGameContext();
+	
+	/**
+	 * Constructor
+	 */
 	public GameEngine() {
 		setPlayers(new ArrayList<>());
 		race = new Race();
@@ -37,6 +44,14 @@ public class GameEngine implements Observer {
 	
 	private void gameSetup() {
 		logger.info("initialising game");
+		
+		if(gameContext.getCurrentState() instanceof UndefinedState) {
+			logger.info("Initialising game state to 'NEW'");
+			gameContext.setState(new NewState());
+		} else {
+			logger.error("Game state not in Undefined state");
+			throw new RuntimeException();
+		}
 		
 		// set up horses
 		for(int i = 0; i < gameModel.getHorsesNames().length; i++) {
@@ -50,12 +65,13 @@ public class GameEngine implements Observer {
 		}
 		
 		logger.info("finished setting game up");
+		gameContext.setState(new ReadyState());
 		playGame();
 	}
 
 	public void playGame() {
 		logger.info("playing the game");
-		
+		gameContext.setState(new StartedState());
 		race.race(gameModel.getPlayersBallsMap(), players);
 		
 	}

@@ -5,17 +5,24 @@
  */
 package com.mycompany.horseracing.model;
 
+import org.apache.log4j.Logger;
+
 /**
- * {@link GameState} interface
+ * {@link NewState} class
  * 
  * @author colin
  *
  */
-public interface GameState {
+public class NewState implements GameState {
 
-	/**
-	 * The action to do upon changing to the current state
-	 */
-	void doAction();
+	final Logger logger = Logger.getLogger(getClass()); 
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void doAction() {
+		logger.info("Entered new state");
+	}
+
 }
