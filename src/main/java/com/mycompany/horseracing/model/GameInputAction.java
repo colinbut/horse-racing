@@ -13,6 +13,8 @@ import org.apache.log4j.Logger;
 import com.mycompany.horseracing.io.InputAction;
 
 /**
+ * {@link GameInputAction} class
+ * 
  * @author colin
  *
  */
@@ -39,10 +41,6 @@ public class GameInputAction implements InputAction {
 		
 		for(int i = 1; i < inputLines.size(); i++) {
 			String[] line = inputLines.get(i).split(" ");
-			
-			if(logger.isDebugEnabled()) {
-				logger.debug(line);
-			}
 			
 			playerBallsPairList.add(new PlayerBallsMapPair(Integer.parseInt(line[0]), 
 					Integer.parseInt(line[1])));

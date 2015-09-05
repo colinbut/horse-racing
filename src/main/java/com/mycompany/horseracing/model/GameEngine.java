@@ -15,6 +15,8 @@ import org.apache.log4j.Logger;
 import com.mycompany.horseracing.domain.Horse;
 import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Race;
+import com.mycompany.horseracing.io.ConsoleOutputWriter;
+import com.mycompany.horseracing.io.OutputWriter;
 
 /**
  * {@link GameEngine} class
@@ -40,6 +42,7 @@ public class GameEngine implements Observer {
 		race = new Race();
 		gameModel = GameModel.getInstance();
 		gameModel.addObserver(this);
+		race.addObserver(this);
 	}
 	
 	private void gameSetup() {
@@ -86,7 +89,13 @@ public class GameEngine implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		gameSetup();
+		
+		if(o instanceof Race) {
+			OutputWriter consoleOutputWriter = new ConsoleOutputWriter();
+			consoleOutputWriter.writeOutput(ResultsOutputFormat.raceResultsFormat(race.getRaceResults()));
+		} else {
+			gameSetup();
+		}
 	}
 	
 	
