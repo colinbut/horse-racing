@@ -9,10 +9,12 @@ import com.mycompany.horseracing.io.FileInputReader;
 import com.mycompany.horseracing.io.InputReader;
 
 /**
+ * {@link GameApplication} class
+ * 
  * @author colin
  *
  */
-public class HorseRacing {
+public class GameApplication {
 
 	/**
 	 * @param args
