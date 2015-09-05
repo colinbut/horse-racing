@@ -3,17 +3,17 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.model;
+package com.mycompany.horseracing.model.state;
 
 import org.apache.log4j.Logger;
 
 /**
- * {@link FinishedState} class
+ * {@link NewState} class
  * 
  * @author colin
  *
  */
-public class FinishedState implements GameState {
+public class NewState implements GameState {
 
 	final Logger logger = Logger.getLogger(getClass()); 
 	
@@ -22,7 +22,7 @@ public class FinishedState implements GameState {
 	 */
 	@Override
 	public void doAction() {
-		logger.info("Entered finished state");
+		logger.info("Entered new state");
 	}
 
 }

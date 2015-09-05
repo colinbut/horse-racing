@@ -5,6 +5,9 @@
  */
 package com.mycompany.horseracing.model;
 
+import com.mycompany.horseracing.model.state.GameState;
+import com.mycompany.horseracing.model.state.UndefinedState;
+
 /**
  * @author colin
  *

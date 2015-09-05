@@ -17,6 +17,10 @@ import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Race;
 import com.mycompany.horseracing.io.ConsoleOutputWriter;
 import com.mycompany.horseracing.io.OutputWriter;
+import com.mycompany.horseracing.model.state.NewState;
+import com.mycompany.horseracing.model.state.ReadyState;
+import com.mycompany.horseracing.model.state.StartedState;
+import com.mycompany.horseracing.model.state.UndefinedState;
 
 /**
  * {@link GameEngine} class

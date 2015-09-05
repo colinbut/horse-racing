@@ -3,13 +3,14 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.model;
+package com.mycompany.horseracing.model.factory;
 
 import com.mycompany.horseracing.domain.Hole;
 import com.mycompany.horseracing.domain.Horse;
 import com.mycompany.horseracing.domain.Lane;
 import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Track;
+import com.mycompany.horseracing.model.GameObject;
 
 /**
  * {@link GameFactory} class

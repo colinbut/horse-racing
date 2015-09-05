@@ -15,11 +15,11 @@ import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
-import com.mycompany.horseracing.model.FinishedState;
 import com.mycompany.horseracing.model.GameContext;
 import com.mycompany.horseracing.model.GameObject;
 import com.mycompany.horseracing.model.PlayerBallsMapPair;
-import com.mycompany.horseracing.model.PlayingState;
+import com.mycompany.horseracing.model.state.FinishedState;
+import com.mycompany.horseracing.model.state.PlayingState;
 
 
 /**
