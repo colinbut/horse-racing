@@ -1,7 +1,7 @@
 # Horse Racing
 
 
-This is a game written in Java to represent the classic Kenturky Derby horse racing game at a fun fair.
+This is a game written in Java to represent the classic Kentucky Derby horse racing game at a fun fair.
 
 See [Horse Racing wiki](https://github.com/colinbut/horse-racing/wiki)
  
