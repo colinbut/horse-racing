@@ -5,9 +5,10 @@
  */
 package com.mycompany.horseracing.model;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
+import java.util.Observable;
 
 import org.apache.log4j.Logger;
 
@@ -19,18 +20,28 @@ import org.apache.log4j.Logger;
  * @author colin
  *
  */
-public class GameModel extends AbstractGameModel {
+public class GameModel extends Observable {
 
 	final Logger logger = Logger.getLogger(getClass()); 
 	
 	private static GameModel INSTANCE = null;
 	
 	private String[] horsesNames;
-	private List<PlayerBallsMapPair> playersBallsMap;
+	private List<PlayerBalls> playersBalls;
 	
+	private boolean horsesReady;
+	
+	public boolean isHorsesReady() {
+		return horsesReady;
+	}
+
+	public void setHorsesReady(boolean horsesReady) {
+		this.horsesReady = horsesReady;
+	}
+
 	private GameModel() {
 		logger.info("initialising GameModel");
-		playersBallsMap = Collections.emptyList();
+		playersBalls = Collections.emptyList();
 	}
 	
 	public static GameModel getInstance() {
@@ -40,29 +51,30 @@ public class GameModel extends AbstractGameModel {
 		return INSTANCE;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void populateHorseNames(String[] horsesNames) {
-		this.horsesNames = horsesNames;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void populatePlayersBallsMap(List<PlayerBallsMapPair> playersBallsMap) {
-		this.playersBallsMap = playersBallsMap;
-	}
-
 	public String[] getHorsesNames() {
 		return horsesNames;
 	}
+	
+	public void setHorsesNames(String[] horsesNames) {
+		this.horsesNames = horsesNames;
+		this.setChanged();
+		this.notifyObservers(horsesNames);
+	}
 
-	public List<PlayerBallsMapPair> getPlayersBallsMap() {
-		return playersBallsMap;
+	public List<PlayerBalls> getPlayersBalls() {
+		return playersBalls;
 	}
 	
+	public void setPlayersBalls(List<PlayerBalls> playersBalls) {
+		this.playersBalls = playersBalls;
+		this.setChanged();
+		this.notifyObservers(playersBalls);
+	}
 	
+	@Override
+	public String toString() {
+		return "GameModel [horsesNames=" + Arrays.toString(horsesNames) + ", playersBalls="
+				+ playersBalls + "]";
+	}
+		
 }

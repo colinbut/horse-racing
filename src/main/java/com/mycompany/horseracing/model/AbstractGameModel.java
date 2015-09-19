@@ -27,7 +27,7 @@ public abstract class AbstractGameModel extends Observable {
 	 * @param horsesNames
 	 * @param playersBallsMap
 	 */
-	public final void populateGameData(String[] horsesNames, List<PlayerBallsMapPair> playersBallsMap) {
+	public final void populateGameData(String[] horsesNames, List<PlayerBalls> playersBallsMap) {
 		populateHorseNames(horsesNames);
 		populatePlayersBallsMap(playersBallsMap);
 		notifyGameEngine();
@@ -43,7 +43,7 @@ public abstract class AbstractGameModel extends Observable {
 	 * 
 	 * @param playersBallsMap
 	 */
-	protected abstract void populatePlayersBallsMap(List<PlayerBallsMapPair> playersBallsMap);
+	protected abstract void populatePlayersBallsMap(List<PlayerBalls> playersBallsMap);
 	
 	/*
 	 * 

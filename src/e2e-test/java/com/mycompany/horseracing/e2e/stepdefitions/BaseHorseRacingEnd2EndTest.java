@@ -5,7 +5,6 @@
  */
 package com.mycompany.horseracing.e2e.stepdefitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import static org.junit.Assert.*;
 
@@ -24,7 +23,7 @@ public class BaseHorseRacingEnd2EndTest {
 
 	private Race race = new Race();
 	private Track track = race.getRaceTrack();
-	private GameEngine game = new GameEngine();
+	private GameEngine game = GameEngine.getGameEngine();
 	
 	@Given("^the track length is (\\d+) yards # (\\d+) furlong$")
 	public void the_track_length_is_yards_furlong(int trackLength, int furlongLength) throws Throwable {

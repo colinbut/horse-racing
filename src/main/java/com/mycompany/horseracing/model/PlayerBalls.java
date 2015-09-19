@@ -6,19 +6,22 @@
 package com.mycompany.horseracing.model;
 
 /**
+ * {@link PlayerBalls} - Player number - Ball number
  * @author colin
  *
  */
-public class PlayerBallsMapPair {
+public class PlayerBalls {
 
 	private Integer playerNumber;
 	private Integer ballNumber;
 	
 	/**
+	 * Constructor
+	 * 
 	 * @param playerNumber
 	 * @param ballNumber
 	 */
-	public PlayerBallsMapPair(Integer playerNumber, Integer ballNumber) {
+	public PlayerBalls(Integer playerNumber, Integer ballNumber) {
 		super();
 		this.playerNumber = playerNumber;
 		this.ballNumber = ballNumber;
@@ -42,9 +45,7 @@ public class PlayerBallsMapPair {
 
 	@Override
 	public String toString() {
-		return "PlayerBallsMapPair [playerNumber=" + playerNumber + ", ballNumber=" + ballNumber + "]";
+		return "PlayerBalls [playerNumber=" + playerNumber + ", ballNumber=" + ballNumber + "]";
 	}
-	
-	
 	
 }

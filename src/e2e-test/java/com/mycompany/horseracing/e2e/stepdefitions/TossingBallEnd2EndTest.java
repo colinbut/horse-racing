@@ -7,6 +7,7 @@ package com.mycompany.horseracing.e2e.stepdefitions;
 
 import org.junit.experimental.categories.Category;
 
+import com.mycompany.horseracing.domain.Ball;
 import com.mycompany.horseracing.domain.Horse;
 import com.mycompany.horseracing.domain.Lane;
 import com.mycompany.horseracing.domain.Player;
@@ -29,7 +30,7 @@ import static org.junit.Assert.*;
 public class TossingBallEnd2EndTest {
 
 	private Player player;
-	private int ballNumber;
+	private Ball ball = new Ball();
 	private Horse horse;
 	private Race race = new Race();
 	
@@ -55,11 +56,11 @@ public class TossingBallEnd2EndTest {
 
 	@When("^a virtual player tosses a ball to a set of holes$")
 	public void a_virtual_player_tosses_a_ball_to_a_set_of_holes() throws Throwable {
-	    player.tossBall(ballNumber);
+	    player.tossBall(ball);
 	}
 
 	@Then("^the horse belonging to the virtual player advances by the number of yards indicated by the hole number$")
 	public void the_horse_belonging_to_the_virtual_player_advances_by_the_number_of_yards_indicated_by_the_hole_number() throws Throwable {
-	    assertEquals(ballNumber, horse.getYardsMoved());
+	    assertEquals(ball, horse.getYardsMoved());
 	}
 }

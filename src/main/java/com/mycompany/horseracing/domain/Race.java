@@ -17,19 +17,21 @@ import org.apache.log4j.Logger;
 
 import com.mycompany.horseracing.model.GameContext;
 import com.mycompany.horseracing.model.GameObject;
-import com.mycompany.horseracing.model.PlayerBallsMapPair;
+import com.mycompany.horseracing.model.PlayerBalls;
 import com.mycompany.horseracing.model.state.FinishedState;
 import com.mycompany.horseracing.model.state.PlayingState;
 
 
 /**
- * {@link Race} class
+ * {@link Race} - the race
  * 
  * @author colin
  *
  */
 public class Race extends Observable implements GameObject, Observer {
 
+	public static final int NUMBER_OF_HORSES = 7;
+	
 	final Logger logger = Logger.getLogger(getClass()); 
 	
 	private List<Horse> horses;
@@ -37,13 +39,17 @@ public class Race extends Observable implements GameObject, Observer {
 	private SortedMap<Integer, Horse> raceResults;
 	private GameContext gameContext = GameContext.getGameContext();
 	
-	
-	public static final int NUMBER_OF_HORSES = 7;
-	
+	/**
+	 * Constructor
+	 */
 	public Race() {
 		raceTrack = Track.getInstance();
 		horses = new ArrayList<>(NUMBER_OF_HORSES);
 		raceResults = new TreeMap<>(Collections.reverseOrder());
+	}
+	
+	public Track getRaceTrack() {
+		return raceTrack;
 	}
 	
 	public void addHorse(Horse horse) {
@@ -54,10 +60,6 @@ public class Race extends Observable implements GameObject, Observer {
 	public int getNumberOfHorses() {
 		return horses.size();
 	}
-
-	public Track getRaceTrack() {
-		return raceTrack;
-	}
 	
 	public void enterLane() {
 		for(int i = 0; i < horses.size(); i++) {
@@ -65,12 +67,12 @@ public class Race extends Observable implements GameObject, Observer {
 		}
 	}
 	
-	public void race(List<PlayerBallsMapPair> playerBallsMap, List<Player> players) {
+	public void race(List<PlayerBalls> playerBallsMap, List<Player> players) {
 		logger.info("racing started");
 		
 		gameContext.setState(new PlayingState());
 		
-		for(PlayerBallsMapPair pair : playerBallsMap) {
+		for(PlayerBalls pair : playerBallsMap) {
 			
 			if(gameContext.getCurrentState() instanceof FinishedState) {
 				logger.info("racing stopped");
@@ -86,28 +88,33 @@ public class Race extends Observable implements GameObject, Observer {
 			}
 			
 			// get the player
-			Player player = null;
-			for(Player p : players) {
-				if(p.getHorse() == horse) {
-					player = p;
-					break;
-				}
-			}
-			
-			Lane lane = raceTrack.getLane(horseLaneNumber);
-			
-			if(lane != null) {
+			Player player = findPlayer(players, horse);
+			if(player != null) {
 				
-				int yardToMove = pair.getBallNumber();
-				if(player.getLane() == null) {
-					player.setLane(lane);
+				Lane lane = raceTrack.getLane(horseLaneNumber);
+				
+				if(lane != null) {
+					
+					int yardToMove = pair.getBallNumber();
+					if(player.getLane() == null) {
+						player.setLane(lane);
+					}
+					
+					Ball ball = new Ball();
+					ball.setNumber(yardToMove);
+					player.tossBall(ball);
+					
 				}
-				player.tossBall(yardToMove);
 				
 			}
 			
 		}
 		
+		finishRace();
+		
+	}
+	
+	private void finishRace() {
 		logger.info("racing finished");
 		
 		for(Horse horse : horses) {
@@ -116,6 +123,15 @@ public class Race extends Observable implements GameObject, Observer {
 		
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	private Player findPlayer(List<Player> players, Horse horse) {
+		for(Player player : players) {
+			if(player.getHorse() == horse) {
+				return player;
+			}
+		}
+		return null;
 	}
 	
 	private Horse findHorseById(int horseNumber) {
@@ -142,6 +158,12 @@ public class Race extends Observable implements GameObject, Observer {
 		} else {
 			throw new IllegalArgumentException("Incorrect type observed - something went wrong");
 		}
-		
 	}
+
+	@Override
+	public String toString() {
+		return "Race [horses=" + horses + ", raceTrack=" + raceTrack + ", raceResults=" + raceResults + ", gameContext="
+				+ gameContext + "]";
+	}
+	
 }

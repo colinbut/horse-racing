@@ -11,6 +11,8 @@ import java.util.List;
 import com.mycompany.horseracing.model.GameObject;
 
 /**
+ * {@link Track} - represents the race track
+ * 
  * @author colin
  *
  */
@@ -22,6 +24,9 @@ public class Track implements GameObject {
 	
 	private List<Lane> lanes;
 	
+	/* 
+	 * Singleton Design Pattern
+	 */
 	private Track() {
 		lanes = new ArrayList<>();
 		lanes.add(new Lane(1));
@@ -33,6 +38,11 @@ public class Track implements GameObject {
 		lanes.add(new Lane(7));
 	}
 	
+	/**
+	 * Returns this Track instance - there can only be 1
+	 * 
+	 * @return the track instance
+	 */
 	public static Track getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new Track();
@@ -44,6 +54,12 @@ public class Track implements GameObject {
 		return lanes;
 	}
 	
+	/**
+	 * Gets back the lane by the given lane number
+	 * 
+	 * @param laneNumber the number of the lane
+	 * @return the lane, or null if not found
+	 */
 	public Lane getLane(int laneNumber) {
 		for(Lane lane : lanes) {
 			if(lane.getLaneNumber() == laneNumber) {
@@ -53,6 +69,12 @@ public class Track implements GameObject {
 		return null;
 	}
 	
+	/**
+	 * Enters a horse into the lane
+	 * 
+	 * @param horse the horse to enter
+	 * @param laneNumber number of the lane to enter
+	 */
 	public void enterLane(Horse horse, int laneNumber) {
 		lanes.stream().forEach(lane -> {
 			if(lane.getLaneNumber() == laneNumber) {

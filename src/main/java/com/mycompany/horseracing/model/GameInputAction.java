@@ -7,9 +7,16 @@ package com.mycompany.horseracing.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
 import org.apache.log4j.Logger;
 
+import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.io.InputAction;
 
 /**
@@ -37,23 +44,40 @@ public class GameInputAction implements InputAction {
 		String horses = inputLines.get(0); // assume first line is horses names
 		String[] horsesNames = horses.split(", ");
 		
-		List<PlayerBallsMapPair> playerBallsPairList = new ArrayList<>();
+		// we got the horses name - setup the game to be played
 		
-		for(int i = 1; i < inputLines.size(); i++) {
-			String[] line = inputLines.get(i).split(" ");
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		Future<?> future = executor.submit(new Runnable() {
+
+			@Override
+			public void run() {
+				gameModel.setHorsesNames(horsesNames);				
+			}
+		});
+		
+		while(!gameModel.isHorsesReady()) {
+			logger.info("Horses not ready yet - still waiting");
+		}
+		
+		// it must be done now
+		if(future.isDone()) {
+			List<PlayerBalls> playerBalls = new ArrayList<>();
 			
-			playerBallsPairList.add(new PlayerBallsMapPair(Integer.parseInt(line[0]), 
-					Integer.parseInt(line[1])));
+			// single thread of playing
+			for(int i = 1; i < inputLines.size(); i++) {
+				String[] line = inputLines.get(i).split(" ");
+				
+				playerBalls.add(new PlayerBalls(Integer.parseInt(line[0]), 
+						Integer.parseInt(line[1])));
+				
+				
+			}
+			
+			gameModel.setPlayersBalls(playerBalls);
+			
+			executor.shutdown();
 		}
 		
-		if(logger.isDebugEnabled()) {
-			playerBallsPairList.stream().forEach((playerBallsPair) -> {
-				logger.debug(playerBallsPair);
-			});
-		}
-		
-		
-		gameModel.populateGameData(horsesNames, playerBallsPairList);
 	}
 
 }

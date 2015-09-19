@@ -21,6 +21,14 @@ public class Horse extends Observable implements GameObject {
 	private String name;
 	private int yardsMoved;
 	
+	public int getHorseNumber() {
+		return horseNumber;
+	}
+
+	public void setHorseNumber(int horseNumber) {
+		this.horseNumber = horseNumber;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -33,10 +41,6 @@ public class Horse extends Observable implements GameObject {
 		return yardsMoved;
 	}
 	
-	public void setYardsMoved(int yardsMoved) {
-		this.yardsMoved = yardsMoved;
-	}
-	
 	public void advance(int yardsToMove) {
 		yardsMoved += yardsToMove;
 		if(yardsMoved >= Track.LENGTH) {
@@ -47,14 +51,6 @@ public class Horse extends Observable implements GameObject {
 	private void crossingTheFinishLine() {
 		this.setChanged();
 		this.notifyObservers();
-	}
-
-	public int getHorseNumber() {
-		return horseNumber;
-	}
-
-	public void setHorseNumber(int horseNumber) {
-		this.horseNumber = horseNumber;
 	}
 
 	@Override

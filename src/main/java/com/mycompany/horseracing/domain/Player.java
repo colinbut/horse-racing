@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import com.mycompany.horseracing.model.GameObject;
 
 /**
- * {@link Player} class
+ * {@link Player} - the game player
  * 
  * @author colin
  *
@@ -23,19 +23,15 @@ public class Player implements GameObject {
 	private Horse horse;
 	private Lane lane;
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param horse
+	 */
 	public Player(Horse horse) {
 		setHorse(horse);
 	}
 	
-	public void tossBall(int yardsToMove) {
-		Hole hole = lane.findHoleByNumber(yardsToMove);
-		if(hole != null) {
-			logger.info(horse + " advancing " + yardsToMove + " yards");
-			horse.advance(yardsToMove);
-		}
-		
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -59,4 +55,26 @@ public class Player implements GameObject {
 	public void setLane(Lane lane) {
 		this.lane = lane;
 	}
+	
+	/**
+	 * A player tosses the ball into a hole with a number indicating
+	 * how much the horse must advance
+	 * 
+	 * @param yardsToMove number of yards to move forward
+	 */
+	public void tossBall(Ball ball) {
+		Hole hole = lane.findHoleByNumber(ball.getNumber());
+		if(hole != null) {
+			int yardsToMove = ball.getNumber();
+			logger.info(horse + " advancing " + yardsToMove + " yards");
+			horse.advance(yardsToMove);
+		}
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", horse=" + horse + ", lane=" + lane + "]";
+	}
+
 }

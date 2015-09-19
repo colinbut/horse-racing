@@ -5,27 +5,16 @@
  */
 package com.mycompany.horseracing.domain;
 
-import com.mycompany.horseracing.model.GameObject;
-
 /**
- * {@link Hole} class
- *  
+ * {@link Ball} - the ball a player throws into a hole
+ * 
  * @author colin
  *
  */
-public class Hole implements GameObject {
+public class Ball {
 
 	private int number;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param number the number this hole presents
-	 */
-	public Hole(int number) {
-		this.number = number;
-	}
-	
 	public int getNumber() {
 		return number;
 	}
@@ -33,10 +22,4 @@ public class Hole implements GameObject {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-
-	@Override
-	public String toString() {
-		return "Hole [number=" + number + "]";
-	}
-		
 }

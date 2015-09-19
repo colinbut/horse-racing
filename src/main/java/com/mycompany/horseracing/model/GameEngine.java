@@ -28,7 +28,7 @@ import com.mycompany.horseracing.model.state.UndefinedState;
  * @author colin
  *
  */
-public class GameEngine implements Observer {
+public final class GameEngine implements Observer {
 
 	final Logger logger = Logger.getLogger(getClass()); 
 	
@@ -38,15 +38,24 @@ public class GameEngine implements Observer {
 	
 	private GameContext gameContext = GameContext.getGameContext();
 	
+	private static GameEngine INSTANCE = null;
+	
 	/**
 	 * Constructor
 	 */
-	public GameEngine() {
+	private GameEngine() {
 		setPlayers(new ArrayList<>());
 		race = new Race();
 		gameModel = GameModel.getInstance();
 		gameModel.addObserver(this);
 		race.addObserver(this);
+	}
+	
+	public static GameEngine getGameEngine() {
+		if(INSTANCE == null) {
+			INSTANCE = new GameEngine();
+		}
+		return INSTANCE;
 	}
 	
 	private void gameSetup() {
@@ -61,28 +70,23 @@ public class GameEngine implements Observer {
 		}
 		
 		// set up horses
-		for(int i = 0; i < gameModel.getHorsesNames().length; i++) {
-			Horse horse = new Horse();
-			horse.setName(gameModel.getHorsesNames()[i]);
-			horse.setHorseNumber(i + 1);
-			race.addHorse(horse);
-			
-			Player player = new Player(horse);
-			players.add(player);
+		if(gameModel.getHorsesNames() != null) {
+			for(int i = 0; i < gameModel.getHorsesNames().length; i++) {
+				Horse horse = new Horse();
+				horse.setName(gameModel.getHorsesNames()[i]);
+				horse.setHorseNumber(i + 1);
+				race.addHorse(horse);
+				
+				Player player = new Player(horse);
+				players.add(player);
+			}
 		}
 		
 		logger.info("finished setting game up");
 		gameContext.setState(new ReadyState());
-		playGame();
+		startGame();
 	}
 
-	public void playGame() {
-		logger.info("playing the game");
-		gameContext.setState(new StartedState());
-		race.race(gameModel.getPlayersBallsMap(), players);
-		
-	}
-	
 	public List<Player> getPlayers() {
 		return players;
 	}
@@ -90,15 +94,31 @@ public class GameEngine implements Observer {
 	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}
-
+	
+	public void startGame() {
+		logger.info("starting the game");
+		gameContext.setState(new StartedState());
+		
+		gameModel.setHorsesReady(true);
+		
+	}
+	
+	public void playGame() {
+		logger.info("playing the game");
+		race.race(gameModel.getPlayersBalls(), players);
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
-		
 		if(o instanceof Race) {
 			OutputWriter consoleOutputWriter = new ConsoleOutputWriter();
 			consoleOutputWriter.writeOutput(ResultsOutputFormat.raceResultsFormat(race.getRaceResults()));
-		} else {
-			gameSetup();
+		} else if(o instanceof GameModel) {
+			if(arg instanceof List<?>) {
+				playGame();
+			} else {
+				gameSetup();
+			}
 		}
 	}
 	

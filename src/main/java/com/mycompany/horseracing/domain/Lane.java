@@ -21,16 +21,17 @@ public class Lane implements GameObject {
 	private int laneNumber;
 	private Horse horse;
 	private List<Hole> holes;
-
 	
+	private static final int NUMBER_OF_HOLES = 11;
 
 	/**
+	 * Constructor
+	 * 
 	 * @param laneNumber
 	 */
 	public Lane(int laneNumber) {
-		super();
 		this.laneNumber = laneNumber;
-		holes = new ArrayList<>(11);
+		holes = new ArrayList<>(NUMBER_OF_HOLES);
 		
 		// holes - 5, 5, 5, 5, 10, 10, 10, 20, 20, 40, 60
 		
@@ -80,6 +81,10 @@ public class Lane implements GameObject {
 		}
 		return holeFound;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Lane [laneNumber=" + laneNumber + ", horse=" + horse + ", holes=" + holes + "]";
+	}
 	
 }

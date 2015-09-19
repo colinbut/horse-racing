@@ -21,7 +21,7 @@ public class GameApplication {
 	 */
 	public static void main(String[] args) {
 		
-		GameEngine game = new GameEngine();
+		GameEngine game = GameEngine.getGameEngine();
 		
 		InputReader fileInputReader = new FileInputReader("src/main/resources/input.txt");
 		fileInputReader.readInput();
