@@ -1,7 +1,9 @@
 # Horse Racing
- This is a special version of the horse racing derby game (better known as Kenturky Derby) where you can find in several fun fairs.
- 
- <img src="http://www.funfairridehire.com/tuckers_funfair_rides/kentucky-derby-game.jpg"/>
+
+
+This is a game written in Java to represent the classic Kenturky Derby horse racing game at a fun fair.
+
+See [Horse Racing wiki!](https://github.com/colinbut/horse-racing/wiki)
  
  
 ### Working in Eclipse
@@ -13,8 +15,9 @@
    ```
 2. inside Eclipse
 
+   ```
    File > Import > Maven > Existing maven project
-   
+   ```
    
    
 ### Running Horse-Racing
