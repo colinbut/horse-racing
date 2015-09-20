@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import com.mycompany.horseracing.domain.GameObject;
 import com.mycompany.horseracing.domain.GameObjectType;
 import com.mycompany.horseracing.domain.Horse;
+import com.mycompany.horseracing.domain.Lane;
 import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Race;
 import com.mycompany.horseracing.factory.GameFactory;
@@ -80,13 +81,20 @@ public final class GameEngine implements Observer {
 			for(int i = 0; i < gameModel.getHorsesNames().length; i++) {
 				Horse horse = (Horse) gameObjectFactory.getObject(GameObjectType.HORSE);
 				horse.setName(gameModel.getHorsesNames()[i]);
-				horse.setHorseNumber(i + 1);
+				
+				int number = i + 1;
+				
+				horse.setHorseNumber(number);
 				race.addHorse(horse);
+				
+				Lane lane = race.getRaceTrack().getLane(number);
 				
 				Player player = (Player) gameObjectFactory.getObject(GameObjectType.PLAYER);
 				player.setHorse(horse);
+				player.setLane(lane);
 				players.add(player);
 			}
+			race.enterLane();
 		}
 		
 		logger.info("finished setting game up");
@@ -107,18 +115,32 @@ public final class GameEngine implements Observer {
 	public List<Player> getPlayers() {
 		return players;
 	}
+	
+	public Player getPlayer(int playerId) {
+		for(Player player : players) {
+			if(player.getLane().getLaneNumber() == playerId) {
+				return player;
+			}
+		}
+		return null;
+	}
 
 	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}
 	
-	public void startGame() {
+	public void playGame(String inputFile) {
+		InputReader reader = inputReaderFactory.getObject(ReaderType.FILE, inputFile);
+		reader.readInput();
+	}
+	
+	private void startGame() {
 		logger.info("starting the game");
 		gameContext.setState(stateFactory.getObject(StateType.STARTED));
 		gameModel.setHorsesReady(true);
 	}
 	
-	public void playGame() {
+	public void startRace() {
 		logger.info("playing the game");
 		race.race(gameModel.getPlayersBalls(), players);
 	}
@@ -134,7 +156,7 @@ public final class GameEngine implements Observer {
 			printResults();
 		} else if(o instanceof GameModel) {
 			if(arg instanceof List<?>) {
-				playGame();
+				startRace();
 			} else {
 				gameSetup();
 			}

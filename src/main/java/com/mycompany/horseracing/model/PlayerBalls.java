@@ -5,47 +5,38 @@
  */
 package com.mycompany.horseracing.model;
 
+import com.mycompany.horseracing.domain.Ball;
+import com.mycompany.horseracing.domain.Player;
+
 /**
- * {@link PlayerBalls} - Player number - Ball number
+ * {@link PlayerBalls} - Player - Ball
  * @author colin
  *
  */
 public class PlayerBalls {
 
-	private Integer playerNumber;
-	private Integer ballNumber;
+	private Player player;
+	private Ball ball;
 	
-	/**
-	 * Constructor
-	 * 
-	 * @param playerNumber
-	 * @param ballNumber
-	 */
-	public PlayerBalls(Integer playerNumber, Integer ballNumber) {
-		super();
-		this.playerNumber = playerNumber;
-		this.ballNumber = ballNumber;
+	public Player getPlayer() {
+		return player;
 	}
 
-	public Integer getPlayerNumber() {
-		return playerNumber;
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
-	public void setPlayerNumber(Integer playerNumber) {
-		this.playerNumber = playerNumber;
+	public Ball getBall() {
+		return ball;
 	}
 
-	public Integer getBallNumber() {
-		return ballNumber;
-	}
-
-	public void setBallNumber(Integer ballNumber) {
-		this.ballNumber = ballNumber;
+	public void setBall(Ball ball) {
+		this.ball = ball;
 	}
 
 	@Override
 	public String toString() {
-		return "PlayerBalls [playerNumber=" + playerNumber + ", ballNumber=" + ballNumber + "]";
+		return "PlayerBalls [player=" + player + ", ball=" + ball + "]";
 	}
 	
 }

@@ -22,6 +22,8 @@ public final class ResultsOutputFormat {
 	
 	private static final String NEW_LINE_SEPARATOR = "\n";
 	
+	private ResultsOutputFormat() {}
+	
 	/**
 	 * Returns the race results in a format
 	 * 
@@ -29,19 +31,19 @@ public final class ResultsOutputFormat {
 	 * @return race result in string 
 	 */
 	public static String raceResultsFormat(SortedMap<Integer, Horse> results) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(RESULTS_HEADER);
-		sb.append(NEW_LINE_SEPARATOR);
+		StringBuilder resultsOutput = new StringBuilder();
+		resultsOutput.append(RESULTS_HEADER);
+		resultsOutput.append(NEW_LINE_SEPARATOR);
 		
 		int position = 1;
 		for(Map.Entry<Integer, Horse> result : results.entrySet()){
 			
-			sb.append(position + ", " + result.getValue().getHorseNumber() + ", " +
+			resultsOutput.append(position + ", " + result.getValue().getHorseNumber() + ", " +
 							result.getValue().getName() + NEW_LINE_SEPARATOR);
 			
 			position++;
 		}
-		return sb.toString();
+		return resultsOutput.toString();
 	}
 	
 }

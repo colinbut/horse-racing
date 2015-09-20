@@ -105,6 +105,12 @@ public class Lane implements GameObject {
 		this.holes = holes;
 	}
 	
+	/**
+	 * Finds the hole object indicated by the given number
+	 * 
+	 * @param number the number of the hole to find
+	 * @return the hole
+	 */
 	public Hole findHoleByNumber(int number) {
 		Hole holeFound = null;
 		for(Hole hole : holes) {

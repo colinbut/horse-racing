@@ -57,8 +57,7 @@ public class GameModel extends Observable {
 	
 	public void setHorsesNames(String[] horsesNames) {
 		this.horsesNames = horsesNames;
-		this.setChanged();
-		this.notifyObservers(horsesNames);
+		notifyChanges(horsesNames);
 	}
 
 	public List<PlayerBalls> getPlayersBalls() {
@@ -67,8 +66,12 @@ public class GameModel extends Observable {
 	
 	public void setPlayersBalls(List<PlayerBalls> playersBalls) {
 		this.playersBalls = playersBalls;
+		notifyChanges(playersBalls);
+	}
+	
+	private void notifyChanges(Object obj) {
 		this.setChanged();
-		this.notifyObservers(playersBalls);
+		this.notifyObservers(obj);
 	}
 	
 	@Override

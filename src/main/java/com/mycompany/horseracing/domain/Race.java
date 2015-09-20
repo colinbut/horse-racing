@@ -15,10 +15,13 @@ import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
+import com.mycompany.horseracing.factory.GameFactory;
+import com.mycompany.horseracing.factory.StateFactory;
 import com.mycompany.horseracing.model.GameContext;
 import com.mycompany.horseracing.model.PlayerBalls;
 import com.mycompany.horseracing.model.state.FinishedState;
-import com.mycompany.horseracing.model.state.PlayingState;
+import com.mycompany.horseracing.model.state.GameState;
+import com.mycompany.horseracing.model.state.StateType;
 
 
 /**
@@ -37,6 +40,7 @@ public class Race extends Observable implements Observer, GameObject {
 	private Track raceTrack;
 	private SortedMap<Integer, Horse> raceResults;
 	private GameContext gameContext = GameContext.getGameContext();
+	private GameFactory<StateType, GameState> stateFactory = StateFactory.getFactory();
 	
 	/**
 	 * Constructor
@@ -66,46 +70,21 @@ public class Race extends Observable implements Observer, GameObject {
 		}
 	}
 	
-	public void race(List<PlayerBalls> playerBallsMap, List<Player> players) {
+	public void race(List<PlayerBalls> playerBalls, List<Player> players) {
 		logger.info("racing started");
 		
-		gameContext.setState(new PlayingState());
+		gameContext.setState(stateFactory.getObject(StateType.PLAYING));
 		
-		for(PlayerBalls pair : playerBallsMap) {
+		for(PlayerBalls playerBall : playerBalls) {
 			
 			if(gameContext.getCurrentState() instanceof FinishedState) {
 				logger.info("racing stopped");
 				break;
 			}
 			
-			int horseLaneNumber = pair.getPlayerNumber();
-			
-			Horse horse = findHorseById(horseLaneNumber);
-			if(horse == null) {
-				logger.warn("can't find horse " + horseLaneNumber);
-				continue; //skip this iteration as there's no horse registered with this number
-			}
-			
-			// get the player
-			Player player = findPlayer(players, horse);
-			if(player != null) {
-				
-				Lane lane = raceTrack.getLane(horseLaneNumber);
-				
-				if(lane != null) {
-					
-					int yardToMove = pair.getBallNumber();
-					if(player.getLane() == null) {
-						player.setLane(lane);
-					}
-					
-					Ball ball = new Ball();
-					ball.setNumber(yardToMove);
-					player.tossBall(ball);
-					
-				}
-				
-			}
+			Player player = playerBall.getPlayer();
+			Ball ball = playerBall.getBall();
+			player.tossBall(ball);
 			
 		}
 		
@@ -123,25 +102,7 @@ public class Race extends Observable implements Observer, GameObject {
 		this.setChanged();
 		this.notifyObservers();
 	}
-	
-	private Player findPlayer(List<Player> players, Horse horse) {
-		for(Player player : players) {
-			if(player.getHorse() == horse) {
-				return player;
-			}
-		}
-		return null;
-	}
-	
-	private Horse findHorseById(int horseNumber) {
-		for(Horse horse : horses) {
-			if(horse.getHorseNumber() == horseNumber) {
-				return horse;
-			}
-		}
-		return null;
-	}
-
+		
 	public SortedMap<Integer, Horse> getRaceResults() {
 		return raceResults;
 	}
@@ -151,8 +112,7 @@ public class Race extends Observable implements Observer, GameObject {
 		if(o instanceof Horse) {
 			Horse horse = (Horse) o;
 			logger.info(horse + " won the race! ");
-			
-			gameContext.setState(new FinishedState());
+			gameContext.setState(stateFactory.getObject(StateType.FINISHED));
 			
 		} else {
 			throw new IllegalArgumentException("Incorrect type observed - something went wrong");
