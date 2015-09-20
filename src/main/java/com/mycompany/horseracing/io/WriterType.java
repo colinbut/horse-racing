@@ -3,25 +3,17 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.factory;
+package com.mycompany.horseracing.io;
 
 /**
- * {@link StateType} enumeration
+ * {@link WriterType} enumeration - represent a type of writer
  * 
  * @author colin
  *
  */
-public enum StateType {
+public enum WriterType {
 
-	NEW,
+	LOG,
 	
-	PLAYING,
-	
-	READY,
-	
-	STARTED,
-	
-	FINISHED,
-	
-	UNDEFINED
+	CONSOLE
 }

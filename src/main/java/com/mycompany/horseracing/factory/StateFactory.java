@@ -11,6 +11,7 @@ import com.mycompany.horseracing.model.state.NewState;
 import com.mycompany.horseracing.model.state.PlayingState;
 import com.mycompany.horseracing.model.state.ReadyState;
 import com.mycompany.horseracing.model.state.StartedState;
+import com.mycompany.horseracing.model.state.StateType;
 import com.mycompany.horseracing.model.state.UndefinedState;
 
 /**

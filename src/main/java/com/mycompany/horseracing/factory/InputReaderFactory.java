@@ -8,6 +8,7 @@ package com.mycompany.horseracing.factory;
 import com.mycompany.horseracing.io.ConsoleInputReader;
 import com.mycompany.horseracing.io.FileInputReader;
 import com.mycompany.horseracing.io.InputReader;
+import com.mycompany.horseracing.io.ReaderType;
 
 /**
  * {@link InputReaderFactory} factory - create input readers

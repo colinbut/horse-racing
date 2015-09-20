@@ -3,17 +3,17 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.factory;
+package com.mycompany.horseracing.io;
 
 /**
- * {@link WriterType} enumeration - represent a type of writer
+ * {@link ReaderType} enumeration - used identify what types of input read 
  * 
  * @author colin
  *
  */
-public enum WriterType {
+public enum ReaderType {
 
-	LOG,
+	FILE,
 	
 	CONSOLE
 }

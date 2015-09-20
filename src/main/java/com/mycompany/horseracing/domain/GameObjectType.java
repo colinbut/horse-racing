@@ -3,7 +3,7 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.factory;
+package com.mycompany.horseracing.domain;
 
 /**
  * {@link GameObjectType} enumeration - classification of Game objects

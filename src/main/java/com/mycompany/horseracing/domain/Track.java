@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.mycompany.horseracing.factory.GameFactory;
 import com.mycompany.horseracing.factory.GameObjectFactory;
-import com.mycompany.horseracing.factory.GameObjectType;
 
 /**
  * {@link Track} - represents the race track

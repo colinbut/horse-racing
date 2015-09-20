@@ -8,6 +8,7 @@ package com.mycompany.horseracing.factory;
 import com.mycompany.horseracing.io.ConsoleOutputWriter;
 import com.mycompany.horseracing.io.LogOutputWriter;
 import com.mycompany.horseracing.io.OutputWriter;
+import com.mycompany.horseracing.io.WriterType;
 
 /**
  * {@link OutputWriterFactory} factory - used to create output writers

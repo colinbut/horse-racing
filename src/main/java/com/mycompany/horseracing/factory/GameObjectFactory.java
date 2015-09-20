@@ -7,6 +7,7 @@ package com.mycompany.horseracing.factory;
 
 import com.mycompany.horseracing.domain.Ball;
 import com.mycompany.horseracing.domain.GameObject;
+import com.mycompany.horseracing.domain.GameObjectType;
 import com.mycompany.horseracing.domain.Hole;
 import com.mycompany.horseracing.domain.Horse;
 import com.mycompany.horseracing.domain.Lane;

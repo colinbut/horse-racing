@@ -3,17 +3,25 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.factory;
+package com.mycompany.horseracing.model.state;
 
 /**
- * {@link ReaderType} enumeration - used identify what types of input read 
+ * {@link StateType} enumeration
  * 
  * @author colin
  *
  */
-public enum ReaderType {
+public enum StateType {
 
-	FILE,
+	NEW,
 	
-	CONSOLE
+	PLAYING,
+	
+	READY,
+	
+	STARTED,
+	
+	FINISHED,
+	
+	UNDEFINED
 }
