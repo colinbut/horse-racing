@@ -3,18 +3,17 @@
  * | Copyright © 2015 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.horseracing.model.factory;
+package com.mycompany.horseracing.factory;
 
 /**
+ * {@link ReaderType} enumeration - used identify what types of input read 
+ * 
  * @author colin
  *
  */
-public enum GameObjectType {
+public enum ReaderType {
 
-	PLAYER,
-	HORSE,
-	LANE,
-	RACE,
-	TRACK,
-	HOLE
+	FILE,
+	
+	CONSOLE
 }

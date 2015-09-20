@@ -8,7 +8,9 @@ package com.mycompany.horseracing.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mycompany.horseracing.model.GameObject;
+import com.mycompany.horseracing.factory.GameFactory;
+import com.mycompany.horseracing.factory.GameObjectFactory;
+import com.mycompany.horseracing.factory.GameObjectType;
 
 /**
  * {@link Track} - represents the race track
@@ -24,18 +26,20 @@ public class Track implements GameObject {
 	
 	private List<Lane> lanes;
 	
+	private GameFactory<GameObjectType, GameObject> factory = GameObjectFactory.gameObjectFactory();
+	
 	/* 
 	 * Singleton Design Pattern
 	 */
 	private Track() {
 		lanes = new ArrayList<>();
-		lanes.add(new Lane(1));
-		lanes.add(new Lane(2));
-		lanes.add(new Lane(3));
-		lanes.add(new Lane(4));
-		lanes.add(new Lane(5));
-		lanes.add(new Lane(6));
-		lanes.add(new Lane(7));
+		
+		for(int i = 1; i <= 7; i++) {
+			Lane lane = (Lane) factory.getObject(GameObjectType.LANE);
+			lane.setLaneNumber(i);
+			lanes.add(lane);
+		}
+		
 	}
 	
 	/**

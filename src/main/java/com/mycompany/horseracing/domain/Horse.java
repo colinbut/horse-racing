@@ -7,10 +7,8 @@ package com.mycompany.horseracing.domain;
 
 import java.util.Observable;
 
-import com.mycompany.horseracing.model.GameObject;
-
 /**
- * {@link Horse} class
+ * {@link Horse} - represents a Horse
  * 
  * @author colin
  *

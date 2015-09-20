@@ -16,7 +16,6 @@ import java.util.TreeMap;
 import org.apache.log4j.Logger;
 
 import com.mycompany.horseracing.model.GameContext;
-import com.mycompany.horseracing.model.GameObject;
 import com.mycompany.horseracing.model.PlayerBalls;
 import com.mycompany.horseracing.model.state.FinishedState;
 import com.mycompany.horseracing.model.state.PlayingState;
@@ -28,7 +27,7 @@ import com.mycompany.horseracing.model.state.PlayingState;
  * @author colin
  *
  */
-public class Race extends Observable implements GameObject, Observer {
+public class Race extends Observable implements Observer, GameObject {
 
 	public static final int NUMBER_OF_HORSES = 7;
 	

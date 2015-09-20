@@ -7,8 +7,6 @@ package com.mycompany.horseracing.domain;
 
 import org.apache.log4j.Logger;
 
-import com.mycompany.horseracing.model.GameObject;
-
 /**
  * {@link Player} - the game player
  * 
@@ -22,16 +20,7 @@ public class Player implements GameObject {
 	private String name;
 	private Horse horse;
 	private Lane lane;
-	
-	/**
-	 * Constructor
-	 * 
-	 * @param horse
-	 */
-	public Player(Horse horse) {
-		setHorse(horse);
-	}
-	
+		
 	public String getName() {
 		return name;
 	}

@@ -5,26 +5,15 @@
  */
 package com.mycompany.horseracing.domain;
 
-import com.mycompany.horseracing.model.GameObject;
-
 /**
  * {@link Hole} class
  *  
  * @author colin
  *
  */
-public class Hole implements GameObject {
+public class Hole implements GameObject, Cloneable {
 
 	private int number;
-
-	/**
-	 * Constructor
-	 * 
-	 * @param number the number this hole presents
-	 */
-	public Hole(int number) {
-		this.number = number;
-	}
 	
 	public int getNumber() {
 		return number;
@@ -37,6 +26,11 @@ public class Hole implements GameObject {
 	@Override
 	public String toString() {
 		return "Hole [number=" + number + "]";
+	}
+	
+	@Override
+	public Hole clone() throws CloneNotSupportedException {
+		return (Hole) super.clone();
 	}
 		
 }

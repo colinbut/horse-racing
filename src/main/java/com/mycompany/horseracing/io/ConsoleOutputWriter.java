@@ -6,8 +6,9 @@
 package com.mycompany.horseracing.io;
 
 /**
+ * {@link ConsoleOutputWriter} - writes output to the Console ('System.out')
+ * 
  * @author colin
- *
  */
 public class ConsoleOutputWriter implements OutputWriter {
 

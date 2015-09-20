@@ -6,20 +6,11 @@
 package com.mycompany.horseracing.domain;
 
 /**
- * {@link Ball} - the ball a player throws into a hole
+ * {@link GameObject} interface - marker
  * 
  * @author colin
  *
  */
-public class Ball implements GameObject, Cloneable {
+public interface GameObject {
 
-	private int number;
-
-	public int getNumber() {
-		return number;
-	}
-
-	public void setNumber(int number) {
-		this.number = number;
-	}
 }

@@ -77,7 +77,8 @@ public final class GameEngine implements Observer {
 				horse.setHorseNumber(i + 1);
 				race.addHorse(horse);
 				
-				Player player = new Player(horse);
+				Player player = new Player();
+				player.setHorse(horse);
 				players.add(player);
 			}
 		}

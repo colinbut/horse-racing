@@ -6,6 +6,8 @@
 package com.mycompany.horseracing.io;
 
 /**
+ * {@link ConsoleInputReader} - reads input from the Console ('System.in')
+ * 
  * @author colin
  *
  */

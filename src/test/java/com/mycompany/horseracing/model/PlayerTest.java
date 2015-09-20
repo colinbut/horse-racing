@@ -26,7 +26,7 @@ public class PlayerTest {
 	private Horse horse;
 	
 	@InjectMocks
-	private Player player = new Player(null);
+	private Player player = new Player();
 	
 	@Before
 	public void setup() {
