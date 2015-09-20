@@ -14,10 +14,12 @@ import java.util.Objects;
 
 import org.apache.log4j.Logger;
 
-import com.mycompany.horseracing.model.GameInputAction;
-
+import com.mycompany.horseracing.factory.GameFactory;
+import com.mycompany.horseracing.factory.InputActionFactory;
 
 /**
+ * {@link FileInputReader} - a reader that reads from a file
+ * 
  * @author colin
  *
  */
@@ -27,6 +29,13 @@ public class FileInputReader implements InputReader {
 	
 	private String fileName;
 	
+	private GameFactory<InputActionType, InputAction> factory = InputActionFactory.getFactory();
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param fileName
+	 */
 	public FileInputReader(String fileName) {
 		this.fileName = fileName;
 	}
@@ -37,8 +46,9 @@ public class FileInputReader implements InputReader {
 	@Override
 	public void readInput() {
 		Objects.requireNonNull(fileName);
-		readInputFromFile(new GameInputAction());
+		readInputFromFile(factory.getObject(InputActionType.GAME_INPUT_ACTION));
 	}
+	
 	
 	private void readInputFromFile(InputAction inputAction) {
 		try (BufferedReader reader = new BufferedReader(new FileReader(fileName));) {

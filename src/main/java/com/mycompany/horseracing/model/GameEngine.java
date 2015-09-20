@@ -12,14 +12,22 @@ import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
+import com.mycompany.horseracing.domain.GameObject;
+import com.mycompany.horseracing.domain.GameObjectType;
 import com.mycompany.horseracing.domain.Horse;
 import com.mycompany.horseracing.domain.Player;
 import com.mycompany.horseracing.domain.Race;
-import com.mycompany.horseracing.io.ConsoleOutputWriter;
+import com.mycompany.horseracing.factory.GameFactory;
+import com.mycompany.horseracing.factory.GameObjectFactory;
+import com.mycompany.horseracing.factory.InputReaderFactory;
+import com.mycompany.horseracing.factory.OutputWriterFactory;
+import com.mycompany.horseracing.factory.StateFactory;
+import com.mycompany.horseracing.io.InputReader;
 import com.mycompany.horseracing.io.OutputWriter;
-import com.mycompany.horseracing.model.state.NewState;
-import com.mycompany.horseracing.model.state.ReadyState;
-import com.mycompany.horseracing.model.state.StartedState;
+import com.mycompany.horseracing.io.ReaderType;
+import com.mycompany.horseracing.io.WriterType;
+import com.mycompany.horseracing.model.state.GameState;
+import com.mycompany.horseracing.model.state.StateType;
 import com.mycompany.horseracing.model.state.UndefinedState;
 
 /**
@@ -37,19 +45,12 @@ public final class GameEngine implements Observer {
 	private GameModel gameModel;
 	
 	private GameContext gameContext = GameContext.getGameContext();
+	private GameFactory<GameObjectType, GameObject> gameObjectFactory = GameObjectFactory.gameObjectFactory();
+	private GameFactory<StateType, GameState> stateFactory = StateFactory.getFactory();
+	private GameFactory<WriterType, OutputWriter> outputWriterFactory = OutputWriterFactory.getFactory();
+	private GameFactory<ReaderType, InputReader> inputReaderFactory = InputReaderFactory.getFactory();
 	
 	private static GameEngine INSTANCE = null;
-	
-	/**
-	 * Constructor
-	 */
-	private GameEngine() {
-		setPlayers(new ArrayList<>());
-		race = new Race();
-		gameModel = GameModel.getInstance();
-		gameModel.addObserver(this);
-		race.addObserver(this);
-	}
 	
 	public static GameEngine getGameEngine() {
 		if(INSTANCE == null) {
@@ -58,36 +59,51 @@ public final class GameEngine implements Observer {
 		return INSTANCE;
 	}
 	
+	/**
+	 * Constructor
+	 */
+	private GameEngine() {
+		setPlayers(new ArrayList<>());
+		race = (Race) gameObjectFactory.getObject(GameObjectType.RACE);
+		gameModel = GameModel.getInstance();
+		race.addObserver(this);
+		gameModel.addObserver(this);
+	}
+		
 	private void gameSetup() {
 		logger.info("initialising game");
 		
-		if(gameContext.getCurrentState() instanceof UndefinedState) {
-			logger.info("Initialising game state to 'NEW'");
-			gameContext.setState(new NewState());
-		} else {
-			logger.error("Game state not in Undefined state");
-			throw new RuntimeException();
-		}
+		initialiseGameState();
 		
 		// set up horses
 		if(gameModel.getHorsesNames() != null) {
 			for(int i = 0; i < gameModel.getHorsesNames().length; i++) {
-				Horse horse = new Horse();
+				Horse horse = (Horse) gameObjectFactory.getObject(GameObjectType.HORSE);
 				horse.setName(gameModel.getHorsesNames()[i]);
 				horse.setHorseNumber(i + 1);
 				race.addHorse(horse);
 				
-				Player player = new Player();
+				Player player = (Player) gameObjectFactory.getObject(GameObjectType.PLAYER);
 				player.setHorse(horse);
 				players.add(player);
 			}
 		}
 		
 		logger.info("finished setting game up");
-		gameContext.setState(new ReadyState());
+		gameContext.setState(stateFactory.getObject(StateType.READY));
 		startGame();
 	}
-
+	
+	private void initialiseGameState() {
+		if(gameContext.getCurrentState() instanceof UndefinedState) {
+			logger.info("Initialising game state to 'NEW'");
+			gameContext.setState(stateFactory.getObject(StateType.NEW));
+		} else {
+			logger.error("Game state not in Undefined state");
+			throw new RuntimeException();
+		}
+	}
+	
 	public List<Player> getPlayers() {
 		return players;
 	}
@@ -98,10 +114,8 @@ public final class GameEngine implements Observer {
 	
 	public void startGame() {
 		logger.info("starting the game");
-		gameContext.setState(new StartedState());
-		
+		gameContext.setState(stateFactory.getObject(StateType.STARTED));
 		gameModel.setHorsesReady(true);
-		
 	}
 	
 	public void playGame() {
@@ -109,11 +123,15 @@ public final class GameEngine implements Observer {
 		race.race(gameModel.getPlayersBalls(), players);
 	}
 	
+	public void printResults() {
+		OutputWriter consoleOutputWriter = outputWriterFactory.getObject(WriterType.CONSOLE);
+		consoleOutputWriter.writeOutput(ResultsOutputFormat.raceResultsFormat(race.getRaceResults()));
+	}
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof Race) {
-			OutputWriter consoleOutputWriter = new ConsoleOutputWriter();
-			consoleOutputWriter.writeOutput(ResultsOutputFormat.raceResultsFormat(race.getRaceResults()));
+			printResults();
 		} else if(o instanceof GameModel) {
 			if(arg instanceof List<?>) {
 				playGame();
@@ -122,6 +140,10 @@ public final class GameEngine implements Observer {
 			}
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return "GameEngine [players=" + players + ", race=" + race + ", gameModel=" + gameModel + "]";
+	}
 	
 }

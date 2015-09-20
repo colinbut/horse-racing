@@ -11,6 +11,8 @@ import java.util.SortedMap;
 import com.mycompany.horseracing.domain.Horse;
 
 /**
+ * {@link ResultsOutputFormat} class - represents the output format to be printed
+ * 
  * @author colin
  *
  */

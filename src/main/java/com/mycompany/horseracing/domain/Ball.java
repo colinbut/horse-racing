@@ -22,4 +22,15 @@ public class Ball implements GameObject, Cloneable {
 	public void setNumber(int number) {
 		this.number = number;
 	}
+	
+	@Override
+	public Ball clone() throws CloneNotSupportedException {
+		return (Ball) super.clone();
+	}
+
+	@Override
+	public String toString() {
+		return "Ball [number=" + number + "]";
+	}
+
 }

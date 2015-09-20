@@ -85,4 +85,10 @@ public class Track implements GameObject {
 			}
 		});
 	}
+
+	@Override
+	public String toString() {
+		return "Track [lanes=" + lanes + "]";
+	}
+	
 }
