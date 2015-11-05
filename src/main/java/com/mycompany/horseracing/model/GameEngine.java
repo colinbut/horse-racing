@@ -139,12 +139,18 @@ public final class GameEngine implements Observer {
 		gameContext.setState(stateFactory.getObject(StateType.STARTED));
 		gameModel.setHorsesReady(true);
 	}
-	
+
+	/**
+	 * Starts the race
+	 */
 	public void startRace() {
 		logger.info("playing the game");
 		race.race(gameModel.getPlayersBalls(), players);
 	}
-	
+
+	/**
+	 * Prints the results of the game
+	 */
 	public void printResults() {
 		OutputWriter consoleOutputWriter = outputWriterFactory.getObject(WriterType.CONSOLE);
 		consoleOutputWriter.writeOutput(ResultsOutputFormat.raceResultsFormat(race.getRaceResults()));
